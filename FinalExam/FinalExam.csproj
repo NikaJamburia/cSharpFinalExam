@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -267,6 +268,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelOwnersController.cs" />
+    <Compile Include="Controllers\HotelsController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dto\HotelDto.cs" />
@@ -283,6 +287,14 @@
     <Compile Include="Migrations\202001202009215_nika.cs" />
     <Compile Include="Migrations\202001202009215_nika.Designer.cs">
       <DependentUpon>202001202009215_nika.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001210738171_nika2.cs" />
+    <Compile Include="Migrations\202001210738171_nika2.Designer.cs">
+      <DependentUpon>202001210738171_nika2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001210744487_nika3.cs" />
+    <Compile Include="Migrations\202001210744487_nika3.Designer.cs">
+      <DependentUpon>202001210744487_nika3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -381,6 +393,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001202009215_nika.resx">
       <DependentUpon>202001202009215_nika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001210738171_nika2.resx">
+      <DependentUpon>202001210738171_nika2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001210744487_nika3.resx">
+      <DependentUpon>202001210744487_nika3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

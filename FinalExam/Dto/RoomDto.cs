@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace FinalExam.Dto
 {
+    [Serializable]
     public class RoomDto
     {
         public long Id { get; set; }
@@ -16,5 +18,18 @@ namespace FinalExam.Dto
         public int NumberOfBeds { get; set; }
         public int PricePerNight { get; set; }
         public List<ReservedDatesDto> reservedDates { get; set; }
+
+        public RoomDto(long id, long hotelId, string hotelName, string createdAt, string updatedAt, int number, int numberOfBeds, int pricePerNight)
+        {
+            Id = id;
+            HotelId = hotelId;
+            HotelName = hotelName;
+            CreatedAt = createdAt;
+            UpdatedAt = updatedAt;
+            Number = number;
+            NumberOfBeds = numberOfBeds;
+            PricePerNight = pricePerNight;
+            reservedDates = new List<ReservedDatesDto>();
+        }
     }
 }

@@ -28,12 +28,20 @@ namespace FinalExam.Repository
 
         public override Hotel Get(long id)
         {
-            return Context.Hotels.Find(id);
+            Hotel hotel = Context.Hotels.Find(id);
+            Context.Entry(hotel).Reference(h => h.Owner).Load();
+            return hotel;
         }
 
         public override List<Hotel> GetAll()
         {
-            return Context.Hotels.ToList();
+            List<Hotel> hotels = Context.Hotels.ToList();
+            foreach(Hotel hotel in hotels)
+            {
+                Context.Entry(hotel).Reference(h => h.Owner).Load();
+            }
+
+            return hotels;
         }
 
         public override Hotel Save(Hotel entity)

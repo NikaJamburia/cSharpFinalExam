@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using FinalExam.Models;
-using FinalExam.Models;
 using FinalExam.Repository;
 
 namespace FinalExam.Controllers

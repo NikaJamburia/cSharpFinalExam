@@ -26,6 +26,11 @@ namespace FinalExam.Repository
             }
         }
 
+        public List<Reservation> GetByRoomIdAndDates(long RoomId, DateTime checkIn, DateTime checkOut)
+        {
+            return Context.Reservations.Where(r => r.Room.Id == RoomId && ((r.CheckIn >= checkIn && r.CheckIn <= checkOut) || (r.CheckOut >= checkIn && r.CheckOut <= checkOut))).ToList();
+        }
+
         public override Reservation Get(long id)
         {
             return Context.Reservations.Find(id);
@@ -52,6 +57,11 @@ namespace FinalExam.Repository
                 Context.SaveChanges();
             }
             return entity;
+        }
+
+        public List<Reservation> GetByRoom(Room room)
+        {
+            return Context.Reservations.Where(r => r.Room.Id == room.Id).ToList();
         }
     }
 }

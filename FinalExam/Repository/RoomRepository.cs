@@ -30,7 +30,13 @@ namespace FinalExam.Repository
 
         public override List<Room> GetAll()
         {
-            return Context.Rooms.ToList();
+            List<Room> rooms = Context.Rooms.ToList();
+            foreach (Room room in rooms)
+            {
+                Context.Entry(room).Reference(h => h.hotel).Load();
+            }
+
+            return rooms;
         }
 
         public override Room Save(Room entity)
