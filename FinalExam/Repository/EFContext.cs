@@ -16,6 +16,7 @@ namespace FinalExam.Repository
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
 
+        [DbConfigurationType(typeof(Fe6CodeConfig))]
         public EFContext() : base("name=FinalDatabase") {
             this.Configuration.LazyLoadingEnabled = false;
         }
