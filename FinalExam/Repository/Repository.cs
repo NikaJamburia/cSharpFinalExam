@@ -8,7 +8,6 @@ using System.Web;
 
 namespace FinalExam.Repository
 {
-    [Component]
     public abstract class Repository
     {
         protected EFContext Context = new EFContext();

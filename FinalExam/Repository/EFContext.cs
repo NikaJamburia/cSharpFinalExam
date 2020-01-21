@@ -1,4 +1,4 @@
-﻿using Spring.Stereotype;
+﻿ using Spring.Stereotype;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,6 @@ using FinalExam.Models;
 
 namespace FinalExam.Repository
 {
-    [Component]
     public class EFContext : DbContext
     {
         public virtual DbSet<User> Users { get; set; }

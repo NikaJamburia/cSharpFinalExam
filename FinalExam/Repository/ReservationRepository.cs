@@ -9,7 +9,6 @@ using FinalExam.Models;
 
 namespace FinalExam.Repository
 {
-    [Component]
     public class ReservationRepository : CrudRepository<Reservation>
     {
         public override bool Delete(Reservation entity)

@@ -7,7 +7,6 @@ using FinalExam.Models;
 
 namespace FinalExam.Repository
 {
-    [Component]
     public class UserRepository : CrudRepository<User>
     {
         public override bool Delete(User entity)
