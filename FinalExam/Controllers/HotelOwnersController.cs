@@ -10,24 +10,25 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using FinalExam.Models;
 using FinalExam.Models;
+using FinalExam.Repository;
 
 namespace FinalExam.Controllers
 {
     public class HotelOwnersController : ApiController
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private HotelOwnerRepository ownerRepository = new HotelOwnerRepository();
 
         // GET: api/HotelOwners
-        public IQueryable<HotelOwner> GetHotelOwners()
+        public List<HotelOwner> GetHotelOwners()
         {
-            return db.HotelOwners;
+            return ownerRepository.GetAll();
         }
 
         // GET: api/HotelOwners/5
         [ResponseType(typeof(HotelOwner))]
         public IHttpActionResult GetHotelOwner(long id)
         {
-            HotelOwner hotelOwner = db.HotelOwners.Find(id);
+            HotelOwner hotelOwner = ownerRepository.Get(id);
             if (hotelOwner == null)
             {
                 return NotFound();
@@ -40,35 +41,13 @@ namespace FinalExam.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutHotelOwner(long id, HotelOwner hotelOwner)
         {
-            if (!ModelState.IsValid)
+            if(ownerRepository.Get(id) != null)
             {
-                return BadRequest(ModelState);
+                ownerRepository.Update(id, hotelOwner);
+                return Ok(hotelOwner);
             }
 
-            if (id != hotelOwner.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(hotelOwner).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HotelOwnerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return NotFound();
         }
 
         // POST: api/HotelOwners
@@ -80,40 +59,29 @@ namespace FinalExam.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.HotelOwners.Add(hotelOwner);
-            db.SaveChanges();
+            hotelOwner.CreatedAt = DateTime.Now;
+            hotelOwner.UpdatedAt = DateTime.Now;
 
-            return CreatedAtRoute("DefaultApi", new { id = hotelOwner.Id }, hotelOwner);
+            return Ok(ownerRepository.Save(hotelOwner));
+
         }
 
         // DELETE: api/HotelOwners/5
         [ResponseType(typeof(HotelOwner))]
         public IHttpActionResult DeleteHotelOwner(long id)
         {
-            HotelOwner hotelOwner = db.HotelOwners.Find(id);
-            if (hotelOwner == null)
+            HotelOwner owner = ownerRepository.Get(id);
+            if (owner != null)
+            {
+                ownerRepository.Delete(owner);
+            }
+            else
             {
                 return NotFound();
             }
 
-            db.HotelOwners.Remove(hotelOwner);
-            db.SaveChanges();
-
-            return Ok(hotelOwner);
+            return Ok();
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool HotelOwnerExists(long id)
-        {
-            return db.HotelOwners.Count(e => e.Id == id) > 0;
-        }
     }
 }

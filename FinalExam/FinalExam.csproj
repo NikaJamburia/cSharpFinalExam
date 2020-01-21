@@ -305,11 +305,6 @@
     <Compile Include="Repository\RoomRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Service\HotelOwnerService.cs" />
-    <Compile Include="Service\HotelService.cs" />
-    <Compile Include="Service\ReservationService.cs" />
-    <Compile Include="Service\RoomService.cs" />
-    <Compile Include="Service\UserService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -374,7 +369,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Service\impl\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
